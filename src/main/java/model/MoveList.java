@@ -9,7 +9,7 @@ import model.piece.Piece;
 public class MoveList implements Iterable<Move> {
     private Board board;
     private boolean check;
-    private final List<Move> moveList = new ArrayList<>();
+    private final List<Move> moveArray = new ArrayList<>();
 
     public MoveList(final Board verifyBoard) {
         this(verifyBoard, true);
@@ -19,30 +19,27 @@ public class MoveList implements Iterable<Move> {
         board = verifyBoard;
         check = checkCheck;
     }
-
-    public void add(Move move) {
-        moveList.add(move);
-    }
-
-    public boolean addCapture(Move move) {
+   
+    public void AddAllowedMove(Move move) {
         Piece piece = board.getPiece(move.getOriginPosition());
         
         if (board.isFree(move.getDestinationPosition(), piece.getSide())) {
-            /*if (!causesCheck(move)) {
-                add(move);
-                return true;
-            }
-            return true; // false only for a "blocking" move*/
+           if(!this.causesCheck(move)) {
+               moveArray.add(move);
+           }
         }
+    }
+    
+    public boolean causesCheck(Move move) {
         return false;
     }
 
     public final int size() {
-        return moveList.size();
+        return moveArray.size();
     }
 
     @Override
     public final Iterator<Move> iterator() {
-        return moveList.iterator();
+        return moveArray.iterator();
     }
 }

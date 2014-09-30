@@ -11,21 +11,22 @@ public class Knight extends Piece {
     
     public Knight(Side side) {
         this.side = side;
-        this.cost = 5;
+        this.cost = 3;
     }
 
+    @Override
     public final MoveList getMoveList(Board board) {
         MoveList moveList = new MoveList(board);
         
         Position positionOrigin = this.getPosition();
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, NEAR, FAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, FAR, NEAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, -FAR, NEAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, -FAR, -NEAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, FAR, -NEAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, NEAR, -FAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, -NEAR, -FAR)));
-        moveList.addCapture(new Move(positionOrigin, new Position(positionOrigin, -NEAR, FAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, NEAR, FAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, FAR, NEAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, -FAR, NEAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, -FAR, -NEAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, FAR, -NEAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, NEAR, -FAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, -NEAR, -FAR)));
+        moveList.AddAllowedMove(new Move(positionOrigin, new Position(positionOrigin, -NEAR, FAR)));
         
         return moveList;
     }

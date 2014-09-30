@@ -1,6 +1,8 @@
 package model.piece;
 
+import model.MoveList;
 import model.Position;
+import model.board.Board;
 
 public abstract class Piece {
     protected int cost;
@@ -22,6 +24,8 @@ public abstract class Piece {
     }
     
     public abstract void move();
+    
+    public abstract MoveList getMoveList(Board board);
     
     public Position getPosition() {
         return position;

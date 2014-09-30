@@ -1,9 +1,21 @@
 package model.piece;
 
+import model.MoveList;
+import model.Position;
+import model.board.Board;
+
 public class King extends Piece {
     public King(Side side) {
         this.side = side;
-        this.cost = 100;
+    }
+    
+    @Override
+    public MoveList getMoveList(Board board) {
+        MoveList moveList = new MoveList(board);
+        
+        Position positionOrigin = this.getPosition();
+        
+        return moveList;
     }
 
     @Override
