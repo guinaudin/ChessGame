@@ -20,7 +20,7 @@ public class Bishop extends Piece {
         int y = positionOrigin.getY();
         
         Position tempPosition = new Position(x-1, y-1);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x--;
@@ -31,7 +31,7 @@ public class Bishop extends Piece {
         x = positionOrigin.getX() - 1;
         y = positionOrigin.getY() + 1;
         tempPosition = new Position(x, y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x--;
@@ -42,7 +42,7 @@ public class Bishop extends Piece {
         x = positionOrigin.getX() + 1;
         y = positionOrigin.getY() - 1;
         tempPosition = new Position(x, y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x++;
@@ -53,7 +53,7 @@ public class Bishop extends Piece {
         x = positionOrigin.getX() + 1;
         y = positionOrigin.getY() + 1;
         tempPosition = new Position(x, y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x++;

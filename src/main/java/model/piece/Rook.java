@@ -20,7 +20,7 @@ public class Rook extends Piece {
         int y = positionOrigin.getY();
         
         Position tempPosition = new Position(x-1, y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x--;
@@ -29,7 +29,7 @@ public class Rook extends Piece {
         
         x = positionOrigin.getX() + 1;
         tempPosition = new Position(x, positionOrigin.getY());
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             x++;
@@ -38,7 +38,7 @@ public class Rook extends Piece {
         
         y = positionOrigin.getY() - 1;
         tempPosition = new Position(positionOrigin.getX(), y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             y--;
@@ -47,7 +47,7 @@ public class Rook extends Piece {
         
         y = positionOrigin.getY() + 1;
         tempPosition = new Position(positionOrigin.getX(), y);
-        while(board.isFree(tempPosition)) {
+        while(board.isFree(tempPosition, side)) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
             
             y++;
