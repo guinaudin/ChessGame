@@ -1,6 +1,7 @@
 package model;
 
 import model.board.Board;
+import model.piece.Piece.Side;
 import model.player.Player;
 
 /**Classe définissant l'ensemble des méthodes du modèle abstrait*/
@@ -10,8 +11,8 @@ public class Game extends AbstractModel {
     private Player blackPlayer;
 
     public Game() {
-        whitePlayer = new Player();
-        blackPlayer = new Player();
+        whitePlayer = new Player(Side.WHITE, true);
+        blackPlayer = new Player(Side.BLACK, false);
         board = new Board();
     }
 
