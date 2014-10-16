@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -13,8 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -37,6 +38,9 @@ public class MainView extends JFrame implements ActionListener{
     private JPanel boardPanel;
     private URI url;
     private Desktop desktop = null;
+    private JPanel chessBoardPanel;
+    private JPanel gamePanel;
+    private JButton[][] jButtonChessBoard;
     
     public MainView(AbstractControler controler) {
         super("Chess Game");
@@ -112,129 +116,35 @@ public class MainView extends JFrame implements ActionListener{
     
     /**methode privée ajoutant les boutants gerant des evenements*/
     private JPanel buildBoardPanel() {
-        JPanel boardFlowPanel = new JPanel(new FlowLayout());
-        boardFlowPanel.setBackground(Color.WHITE); 
-        boardPanel = new JPanel();
-        boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.Y_AXIS));
-        boardPanel.setBackground(Color.WHITE); 
+        gamePanel = new JPanel(new BorderLayout());
+        gamePanel.setBackground(Color.WHITE);
         
-        /*jButtonDiceBoard = new JButton[4][4];
-        jButtonRolledDice = new JButton[4];
-        jButtonBombJoker = new JButton[2];
-        jButtonRollJoker = new JButton[2];
-        
-        JPanel dicePanel = new JPanel();
-        dicePanel.setLayout(new BoxLayout(dicePanel, BoxLayout.X_AXIS));
-        dicePanel.setBackground(Color.WHITE); 
+        jButtonChessBoard = new JButton[8][8];
         
         //creation d'un objet JPanel
-        diceBoardPanel = new JPanel();
+        chessBoardPanel = new JPanel(new FlowLayout());
         //layout par defaut
-        diceBoardPanel.setLayout(new GridLayout(4, 4, 5, 5));
-        diceBoardPanel.setBackground(Color.WHITE); 
+        chessBoardPanel.setLayout(new GridLayout(8, 8));
+        chessBoardPanel.setBackground(Color.WHITE); 
                         
         //creation des JButtons installer sur le panel en les rendant evenementiel
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                jButtonDiceBoard[i][j] = new JButton("");
-                jButtonDiceBoard[i][j].setActionCommand("button" + i + j);
-                jButtonDiceBoard[i][j].addActionListener(this);
-                jButtonDiceBoard[i][j].setMaximumSize(new Dimension(50,50));
-                jButtonDiceBoard[i][j].setMinimumSize(new Dimension(50,50));
-                jButtonDiceBoard[i][j].setPreferredSize(new Dimension(50,50));
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                jButtonChessBoard[i][j] = new JButton("");
+                jButtonChessBoard[i][j].setActionCommand("button" + i + j);
+                jButtonChessBoard[i][j].setOpaque(true);
+                jButtonChessBoard[i][j].setBorderPainted(false);
+                if((i+j)%2 == 1)
+                    jButtonChessBoard[i][j].setBackground(Color.gray);
+                jButtonChessBoard[i][j].addActionListener(this);
           
-                diceBoardPanel.add(jButtonDiceBoard[i][j]);
+                chessBoardPanel.add(jButtonChessBoard[i][j]);
             }
         }
         
-        //creation d'un objet JPanel
-        rolledDicePanel = new JPanel();
-        //layout par defaut
-        rolledDicePanel.setLayout(new GridLayout(4, 1, 5, 5));
-        rolledDicePanel.setBackground(Color.WHITE); 
-        
-        for(int i = 0; i < 4; i++) {
-            jButtonRolledDice[i] = new JButton("");
-            jButtonRolledDice[i].setActionCommand("button" + i);
-            jButtonRolledDice[i].addActionListener(this);
-            jButtonRolledDice[i].setMaximumSize(new Dimension(50,50));
-            jButtonRolledDice[i].setMinimumSize(new Dimension(50,50));
-            jButtonRolledDice[i].setPreferredSize(new Dimension(50,50));
-            
-            rolledDicePanel.add(jButtonRolledDice[i]);
-        }
-        
-        dicePanel.add(rolledDicePanel);
-        dicePanel.add(Box.createHorizontalStrut(15));
-        dicePanel.add(diceBoardPanel);
-        
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
-        topPanel.setBackground(Color.WHITE); 
-        
-        rollButton = new JButton("Roll");
-        rollButton.addActionListener(this);
-        rollButton.setMaximumSize(new Dimension(50,50));
-        rollButton.setMinimumSize(new Dimension(50,50));
-        rollButton.setPreferredSize(new Dimension(50,50));
-        
-        topPanel.add(rollButton);
-        topPanel.add(Box.createHorizontalStrut(15));
-        
-        JPanel scorePanel = new JPanel();
-        scorePanel.setLayout(new BoxLayout(scorePanel, BoxLayout.Y_AXIS));
-        scorePanel.setBackground(Color.WHITE); 
-        
-        scoreLabel = new JLabel("Score : " + 0);
-        scorePanel.add(Box.createHorizontalStrut(60));
-        scorePanel.add(scoreLabel);
-        scorePanel.add(Box.createVerticalStrut(5));
-        
-        progressBarScore = new JProgressBar(0, 100);
-        progressBarScore.setValue(0);
-        progressBarScore.setStringPainted(true);
-        scorePanel.add(progressBarScore);
-        
-        topPanel.add(scorePanel);
-        
-        JPanel jokerPanel = new JPanel();
-        jokerPanel.setLayout(new BoxLayout(jokerPanel, BoxLayout.X_AXIS));
-        //topPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        jokerPanel.setBackground(Color.WHITE); 
-        
-        for(int i = 0; i < 2; i++) {
-            jButtonBombJoker[i] = new JButton("");
-            jButtonBombJoker[i].setActionCommand("bombJokerButton" + i);
-            jButtonBombJoker[i].addActionListener(this);
-            jButtonBombJoker[i].setMaximumSize(new Dimension(50,50));
-            jButtonBombJoker[i].setMinimumSize(new Dimension(50,50));
-            jButtonBombJoker[i].setPreferredSize(new Dimension(50,50));
+        gamePanel.add(chessBoardPanel);
 
-            jokerPanel.add(jButtonBombJoker[i]);
-            jokerPanel.add(Box.createHorizontalStrut(5));
-        }
-        
-        for(int i = 0; i < 2; i++) {
-            jButtonRollJoker[i] = new JButton("");
-            jButtonRollJoker[i].setActionCommand("rollJokerButton" + i);
-            jButtonRollJoker[i].addActionListener(this);
-            jButtonRollJoker[i].setMaximumSize(new Dimension(50,50));
-            jButtonRollJoker[i].setMinimumSize(new Dimension(50,50));
-            jButtonRollJoker[i].setPreferredSize(new Dimension(50,50));
-
-            jokerPanel.add(jButtonRollJoker[i]);
-            jokerPanel.add(Box.createHorizontalStrut(5));
-        }
-        
-        boardPanel.add(Box.createVerticalStrut(10));
-        boardPanel.add(topPanel);
-        boardPanel.add(Box.createVerticalStrut(10));
-        boardPanel.add(dicePanel);
-        boardPanel.add(Box.createVerticalStrut(10));
-        boardPanel.add(jokerPanel);
-        boardFlowPanel.add(boardPanel);*/
-        
-        return boardFlowPanel;
+        return gamePanel;
     }
 
     @Override
