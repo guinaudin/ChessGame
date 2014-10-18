@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -14,6 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,10 +26,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import model.board.Board;
 import model.piece.Piece;
 import model.player.Player;
+import observer.Observer;
+import org.w3c.dom.svg.SVGDocument;
 
-public class MainView extends JFrame implements ActionListener{
+public class MainView extends JFrame implements Observer, ActionListener{
     private final AbstractControler controler;
     private JPanel startPagePanel;
     private JLabel imageMainView;
@@ -215,5 +222,28 @@ public class MainView extends JFrame implements ActionListener{
                 System.exit(0);
             }
         }
+    }
+    
+    @Override
+    public void updatePieceBoard(Board board) {
+        Piece[][] chessBoard = board.getBoard();
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                try {
+                    jButtonChessBoard[i][j].setIcon(new ImageIcon(this.getPieceImage(chessBoard[i][j])));
+                }
+                catch (IOException ex) {
+                    Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    private Image getPieceImage(Piece piece) throws IOException {
+        SvgImage svgImage = null;
+        
+        svgImage = new SvgImage((URL)getClass().getClassLoader().getResource("images/pieces/Chess_adt45.svg"));
+        
+        return svgImage.getImage(40, 40);
     }
 }

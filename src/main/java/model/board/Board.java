@@ -56,6 +56,10 @@ public class Board {
         board[ColumnTypes.Column.H.getInt()][7] = new Rook(Piece.Side.BLACK);
     }
     
+    public Piece[][] getBoard() {
+        return board;
+    }
+    
     public Piece getPiece(Position position) {
         return board[position.getX()][position.getY()];
     }

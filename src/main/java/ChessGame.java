@@ -17,6 +17,8 @@ public class ChessGame {
                 AbstractControler controler = new BoardControler(abstractModel);
                 //Création de notre fenêtre avec le contrôleur en paramètre
                 MainView boardView = new MainView(controler);
+                //Ajout de la fenêtre comme observer de notre modèle
+                abstractModel.addObserver(boardView);
             }
         });
     }

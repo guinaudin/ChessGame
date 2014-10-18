@@ -9,7 +9,7 @@ import model.piece.Piece;
 public class MoveList implements Iterable<Move> {
     private Board board;
     private boolean check;
-    private final List<Move> moveArray = new ArrayList<>();
+    private final List<Move> moveArray = new ArrayList<Move>();
 
     public MoveList(final Board verifyBoard) {
         this(verifyBoard, true);

@@ -20,6 +20,8 @@ public class Game extends AbstractModel {
     public void startNewGame(Player whitePlayer) {
         this.whitePlayer = whitePlayer;
         board = new Board();
+        
+        notifyBoardObserver(board);
     }
 
     @Override
@@ -27,5 +29,7 @@ public class Game extends AbstractModel {
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
         board = new Board();
+        
+       notifyBoardObserver(board); 
     }
 }
