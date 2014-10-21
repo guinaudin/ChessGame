@@ -15,9 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,7 +30,6 @@ import model.board.Board;
 import model.piece.Piece;
 import model.player.Player;
 import observer.Observer;
-import org.w3c.dom.svg.SVGDocument;
 
 public class MainView extends JFrame implements Observer, ActionListener{
     private final AbstractControler controler;
@@ -227,12 +226,12 @@ public class MainView extends JFrame implements Observer, ActionListener{
     @Override
     public void updatePieceBoard(Board board) {
         Piece[][] chessBoard = board.getBoard();
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
                 try {
-                    jButtonChessBoard[i][j].setIcon(new ImageIcon(this.getPieceImage(chessBoard[i][j])));
-                }
-                catch (IOException ex) {
+                    if(chessBoard[i][j] != null)
+                        jButtonChessBoard[i][j].setIcon(new ImageIcon(this.getPieceImage(chessBoard[i][j])));
+                } catch (IOException ex) {
                     Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -240,10 +239,10 @@ public class MainView extends JFrame implements Observer, ActionListener{
     }
     
     private Image getPieceImage(Piece piece) throws IOException {
-        SvgImage svgImage = null;
+        Image img = null;
         
-        svgImage = new SvgImage((URL)getClass().getClassLoader().getResource("images/pieces/Chess_adt45.svg"));
+        img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Chess_bdt45.png"));
         
-        return svgImage.getImage(40, 40);
+        return img;
     }
 }

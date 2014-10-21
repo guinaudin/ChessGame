@@ -19,6 +19,12 @@ public class Board {
     public void initializeDefaultBoard() {
         this.board = new Piece[8][8];
         
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                board[i][j] = null;
+            }
+        }
+        
         board[ColumnTypes.Column.A.getInt()][0] = new Rook(Piece.Side.WHITE);
         board[ColumnTypes.Column.B.getInt()][0] = new Knight(Piece.Side.WHITE);
         board[ColumnTypes.Column.C.getInt()][0] = new Bishop(Piece.Side.WHITE);
