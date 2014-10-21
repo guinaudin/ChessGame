@@ -26,6 +26,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import model.board.Board;
 import model.piece.Bishop;
 import model.piece.King;
@@ -47,12 +48,12 @@ public class MainView extends JFrame implements Observer, ActionListener{
     private JMenu miscellaneousMenu;
     private JMenuItem websiteMenuItem;
     private JMenuItem rulesMenuItem;
-    private JPanel boardPanel;
     private URI url;
     private Desktop desktop = null;
     private JPanel chessBoardPanel;
     private JPanel gamePanel;
     private JButton[][] jButtonChessBoard;
+    private static final String COLS = "ABCDEFGH";
     
     public MainView(AbstractControler controler) {
         super("Chess Game");
@@ -136,21 +137,39 @@ public class MainView extends JFrame implements Observer, ActionListener{
         //creation d'un objet JPanel
         chessBoardPanel = new JPanel(new FlowLayout());
         //layout par defaut
-        chessBoardPanel.setLayout(new GridLayout(8, 8));
+        chessBoardPanel.setLayout(new GridLayout(9, 9));
         chessBoardPanel.setBackground(Color.WHITE); 
+        
+        //fill the chess board
+        chessBoardPanel.add(new JLabel(""));
+        // fill the top row
+        for (int i = 0; i < 8; i++) {
+            chessBoardPanel.add(
+                    new JLabel(COLS.substring(i, i + 1),
+                    SwingConstants.CENTER));
+        }
                         
         //creation des JButtons installer sur le panel en les rendant evenementiel
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
-                jButtonChessBoard[i][j] = new JButton("");
-                jButtonChessBoard[i][j].setActionCommand("button" + i + j);
-                jButtonChessBoard[i][j].setOpaque(true);
-                jButtonChessBoard[i][j].setBorderPainted(false);
-                if((i+j)%2 == 1)
-                    jButtonChessBoard[i][j].setBackground(Color.gray);
-                jButtonChessBoard[i][j].addActionListener(this);
-          
-                chessBoardPanel.add(jButtonChessBoard[i][j]);
+                switch(j) {
+                    case 0:
+                        chessBoardPanel.add(new JLabel("" + (i + 1),
+                                SwingConstants.CENTER));
+                    default:
+                        //chessBoardPanel.add(jButtonChessBoard[j][i]);
+                    
+                        jButtonChessBoard[i][j] = new JButton("");
+                        jButtonChessBoard[i][j].setActionCommand("button" + i + j);
+                        jButtonChessBoard[i][j].setOpaque(true);
+                        jButtonChessBoard[i][j].setBorderPainted(false);
+                        if((i+j)%2 == 1)
+                            jButtonChessBoard[i][j].setBackground(Color.gray);
+                        jButtonChessBoard[i][j].addActionListener(this);
+
+                        chessBoardPanel.add(jButtonChessBoard[i][j]);
+                    
+                }
             }
         }
         
