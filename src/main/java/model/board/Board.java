@@ -25,41 +25,41 @@ public class Board {
             }
         }
         
-        board[ColumnTypes.Column.A.getInt()][0] = new Rook(Piece.Side.WHITE);
-        board[ColumnTypes.Column.B.getInt()][0] = new Knight(Piece.Side.WHITE);
-        board[ColumnTypes.Column.C.getInt()][0] = new Bishop(Piece.Side.WHITE);
-        board[ColumnTypes.Column.D.getInt()][0] = new King(Piece.Side.WHITE);
-        board[ColumnTypes.Column.E.getInt()][0] = new Queen(Piece.Side.WHITE);
-        board[ColumnTypes.Column.F.getInt()][0] = new Bishop(Piece.Side.WHITE);
-        board[ColumnTypes.Column.G.getInt()][0] = new Knight(Piece.Side.WHITE);
-        board[ColumnTypes.Column.H.getInt()][0] = new Rook(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.A.getInt()] = new Rook(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.B.getInt()] = new Knight(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.C.getInt()] = new Bishop(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.D.getInt()] = new Queen(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.E.getInt()] = new King(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.F.getInt()] = new Bishop(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.G.getInt()] = new Knight(Piece.Side.WHITE);
+        board[LineTypes.Line.ONE.getInt()][ColumnTypes.Column.H.getInt()] = new Rook(Piece.Side.WHITE);
         
-        board[ColumnTypes.Column.A.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.B.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.C.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.D.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.E.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.F.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.G.getInt()][1] = new Pawn(Piece.Side.WHITE);
-        board[ColumnTypes.Column.H.getInt()][1] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.A.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.B.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.C.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.D.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.E.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.F.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.G.getInt()] = new Pawn(Piece.Side.WHITE);
+        board[LineTypes.Line.TWO.getInt()][ColumnTypes.Column.H.getInt()] = new Pawn(Piece.Side.WHITE);
         
-        board[ColumnTypes.Column.A.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.B.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.C.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.D.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.E.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.F.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.G.getInt()][6] = new Pawn(Piece.Side.BLACK);
-        board[ColumnTypes.Column.H.getInt()][6] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.A.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.B.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.C.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.D.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.E.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.F.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.G.getInt()] = new Pawn(Piece.Side.BLACK);
+        board[LineTypes.Line.SEVEN.getInt()][ColumnTypes.Column.H.getInt()] = new Pawn(Piece.Side.BLACK);
         
-        board[ColumnTypes.Column.A.getInt()][7] = new Rook(Piece.Side.BLACK);
-        board[ColumnTypes.Column.B.getInt()][7] = new Knight(Piece.Side.BLACK);
-        board[ColumnTypes.Column.C.getInt()][7] = new Bishop(Piece.Side.BLACK);
-        board[ColumnTypes.Column.D.getInt()][7] = new Queen(Piece.Side.BLACK);
-        board[ColumnTypes.Column.E.getInt()][7] = new King(Piece.Side.BLACK);
-        board[ColumnTypes.Column.F.getInt()][7] = new Bishop(Piece.Side.BLACK);
-        board[ColumnTypes.Column.G.getInt()][7] = new Knight(Piece.Side.BLACK);
-        board[ColumnTypes.Column.H.getInt()][7] = new Rook(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.A.getInt()] = new Rook(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.B.getInt()] = new Knight(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.C.getInt()] = new Bishop(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.D.getInt()] = new Queen(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.E.getInt()] = new King(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.F.getInt()] = new Bishop(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.G.getInt()] = new Knight(Piece.Side.BLACK);
+        board[LineTypes.Line.EIGHT.getInt()][ColumnTypes.Column.H.getInt()] = new Rook(Piece.Side.BLACK);
     }
     
     public Piece[][] getBoard() {

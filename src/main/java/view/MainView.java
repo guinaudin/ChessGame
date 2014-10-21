@@ -27,7 +27,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import model.board.Board;
+import model.piece.Bishop;
+import model.piece.King;
+import model.piece.Knight;
+import model.piece.Pawn;
 import model.piece.Piece;
+import model.piece.Queen;
+import model.piece.Rook;
 import model.player.Player;
 import observer.Observer;
 
@@ -241,7 +247,18 @@ public class MainView extends JFrame implements Observer, ActionListener{
     private Image getPieceImage(Piece piece) throws IOException {
         Image img = null;
         
-        img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Chess_bdt45.png"));
+            if(piece instanceof Rook)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Rook_" + piece.getSide() + ".png"));
+            else if(piece instanceof Knight)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Knight_" + piece.getSide() + ".png"));
+            else if(piece instanceof Pawn)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Pawn_" + piece.getSide() + ".png"));
+            else if(piece instanceof Bishop)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Bishop_" + piece.getSide() + ".png"));
+            else if(piece instanceof Queen)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/Queen_" + piece.getSide() + ".png"));
+            else if(piece instanceof King)
+                img = ImageIO.read(getClass().getClassLoader().getResource("images/pieces/King_" + piece.getSide() + ".png"));
         
         return img;
     }
