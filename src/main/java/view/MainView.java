@@ -137,7 +137,7 @@ public class MainView extends JFrame implements Observer, ActionListener{
         //creation d'un objet JPanel
         chessBoardPanel = new JPanel(new FlowLayout());
         //layout par defaut
-        chessBoardPanel.setLayout(new GridLayout(9, 9));
+        chessBoardPanel.setLayout(new GridLayout(10, 10));
         chessBoardPanel.setBackground(Color.WHITE); 
         
         //fill the chess board
@@ -148,6 +148,7 @@ public class MainView extends JFrame implements Observer, ActionListener{
                     new JLabel(COLS.substring(i, i + 1),
                     SwingConstants.CENTER));
         }
+        chessBoardPanel.add(new JLabel(""));
                         
         //creation des JButtons installer sur le panel en les rendant evenementiel
         for(int i = 0; i < 8; i++) {
@@ -168,10 +169,13 @@ public class MainView extends JFrame implements Observer, ActionListener{
                         jButtonChessBoard[i][j].addActionListener(this);
 
                         chessBoardPanel.add(jButtonChessBoard[i][j]);
-                    
+                        
+                        if(j == 7)
+                            chessBoardPanel.add(new JLabel(""));
                 }
             }
         }
+        chessBoardPanel.add(new JLabel(""));
         
         gamePanel.add(chessBoardPanel);
 
