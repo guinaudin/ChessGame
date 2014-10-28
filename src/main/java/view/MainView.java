@@ -250,12 +250,10 @@ public class MainView extends JFrame implements Observer, ActionListener {
             }
         }
         else if(e.getSource() instanceof JButton) {
-            if(e.getSource() instanceof JButton) {
-                for(int i = 0; i < 8; i++) {
-                    for(int j = 0; j < 8; j++) {
-                        if(e.getActionCommand().equals("button" + i + j)) {
-                            this.selectOrMovePiece(i, j);
-                        }
+            for(int i = 0; i < 8; i++) {
+                for(int j = 0; j < 8; j++) {
+                    if(e.getActionCommand().equals("button" + i + j)) {
+                        this.selectOrMovePiece(i, j);
                     }
                 }
             }
