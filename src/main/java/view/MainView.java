@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,7 +39,7 @@ import model.piece.Rook;
 import model.player.Player;
 import observer.Observer;
 
-public class MainView extends JFrame implements Observer, ActionListener{
+public class MainView extends JFrame implements Observer, ActionListener {
     private final AbstractControler controler;
     private JPanel startPagePanel;
     private JLabel imageMainView;
@@ -158,16 +159,14 @@ public class MainView extends JFrame implements Observer, ActionListener{
                         chessBoardPanel.add(new JLabel("" + (i + 1),
                                 SwingConstants.CENTER));
                     default:
-                        //chessBoardPanel.add(jButtonChessBoard[j][i]);
-                    
                         jButtonChessBoard[i][j] = new JButton("");
                         jButtonChessBoard[i][j].setActionCommand("button" + i + j);
+                        jButtonChessBoard[i][j].addActionListener(this);
                         jButtonChessBoard[i][j].setOpaque(true);
                         jButtonChessBoard[i][j].setBorderPainted(false);
                         if((i+j)%2 == 1)
                             jButtonChessBoard[i][j].setBackground(Color.gray);
-                        jButtonChessBoard[i][j].addActionListener(this);
-
+                        
                         chessBoardPanel.add(jButtonChessBoard[i][j]);
                         
                         if(j == 7)
@@ -250,6 +249,21 @@ public class MainView extends JFrame implements Observer, ActionListener{
                 System.exit(0);
             }
         }
+        else if(e.getSource() instanceof JButton) {
+            if(e.getSource() instanceof JButton) {
+                for(int i = 0; i < 8; i++) {
+                    for(int j = 0; j < 8; j++) {
+                        if(e.getActionCommand().equals("button" + i + j)) {
+                            this.selectOrMovePiece(i, j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private void selectOrMovePiece(int posX, int posY) {
+        System.out.println("Position ("+posX+","+posY);
     }
     
     @Override
