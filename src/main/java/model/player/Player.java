@@ -14,4 +14,12 @@ public class Player {
     public void setTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }
+    
+    public boolean getTurn() {
+        return myTurn;
+    }
+    
+    public Side getSide() {
+        return side;
+    }
 }

@@ -1,6 +1,7 @@
 package controler;
 
 import model.AbstractModel;
+import model.piece.Piece;
 import model.player.Player;
 
 public abstract class AbstractControler {
@@ -20,5 +21,9 @@ public abstract class AbstractControler {
     
     public void makeTurn() {
          abstractModel.makeTurn();
+    }
+    
+    public Piece selectBoardPiece(int posX, int posY) {
+        return abstractModel.selectBoardPiece(posX, posY);
     }
 }

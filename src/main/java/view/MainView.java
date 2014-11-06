@@ -27,6 +27,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import model.Position;
 import model.board.Board;
 import model.piece.Bishop;
 import model.piece.King;
@@ -54,6 +55,10 @@ public class MainView extends JFrame implements Observer, ActionListener {
     private JPanel gamePanel;
     private JButton[][] jButtonChessBoard;
     private static final String COLS = "ABCDEFGH";
+    private Player whitePlayer;
+    private Player blackPlayer;
+    private Piece selectedPiece;
+    private Position selectedPos;
     
     public MainView(AbstractControler controler) {
         super("Chess Game");
@@ -190,10 +195,13 @@ public class MainView extends JFrame implements Observer, ActionListener {
             
             if(source == newGame2PMenuItem) {
                 this.setNewContentPane(this.buildBoardPanel());
-                controler.startNewGame(new Player(Piece.Side.WHITE, true), new Player(Piece.Side.BLACK, false));
+                whitePlayer = new Player(Piece.Side.WHITE, true);
+                blackPlayer = new Player(Piece.Side.BLACK, false);
+                controler.startNewGame(whitePlayer, blackPlayer);
             }
             else if(source == newGame1PMenuItem)
             {
+                // TO DO
                 this.setNewContentPane(this.buildBoardPanel());
                 controler.startNewGame(new Player(Piece.Side.WHITE, true));
             }
@@ -252,7 +260,7 @@ public class MainView extends JFrame implements Observer, ActionListener {
             for(int i = 0; i < 8; i++) {
                 for(int j = 0; j < 8; j++) {
                     if(e.getActionCommand().equals("button" + i + j)) {
-                        this.selectOrMovePiece(i, j);
+                        this.selectOrMovePiece(j, i);
                     }
                 }
             }
@@ -260,15 +268,25 @@ public class MainView extends JFrame implements Observer, ActionListener {
     }
     
     private void selectOrMovePiece(int posX, int posY) {
-        System.out.println("Position ("+posX+","+posY);
+        System.out.println("Position ("+posX+","+posY+")");
         
         //Si la couleur de la piece correspond à 
-        if(!(controler.selectBoardPiece(posX, posY) == 0)) {   
-            this.selectBoardDie(posX, posY);
+        if(whitePlayer.getTurn()) {
+            if(controler.selectBoardPiece(posX, posY) != null) {
+                System.out.println("color : " + controler.selectBoardPiece(posX, posY).getSide());
+                if(whitePlayer.getSide() == controler.selectBoardPiece(posX, posY).getSide()) {
+                    System.out.println("hello");
+                    this.selectBoardPiece(posX, posY);
+                }
+            }
         }
-        else if(selectedBoardDie != null) {
-            this.moveBoardDie(selectedBoardDie, posX, posY, selectedPosX, selectedPosY);
-        }
+    }
+    
+    private void selectBoardPiece(int posX, int posY) {
+        System.out.println("Piece selected");
+        
+        selectedPiece = controler.selectBoardPiece(posX, posY);
+        selectedPos = new Position(posX, posY);
     }
     
     @Override

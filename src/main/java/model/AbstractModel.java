@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import model.board.Board;
+import model.piece.Piece;
 import model.player.Player;
 import observer.Observable;
 import observer.Observer;
@@ -14,6 +15,8 @@ public abstract class AbstractModel implements Observable {
     public abstract void startNewGame(Player whitePlayer, Player blackPlayer);
     
     public abstract void makeTurn();
+    
+    public abstract Piece selectBoardPiece(int posX, int posY);
     
     @Override
     public void addObserver(Observer obs) {
