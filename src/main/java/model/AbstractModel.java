@@ -13,6 +13,8 @@ public abstract class AbstractModel implements Observable {
 
     public abstract void startNewGame(Player whitePlayer, Player blackPlayer);
     
+    public abstract void makeTurn();
+    
     @Override
     public void addObserver(Observer obs) {
         this.listObserver.add(obs);

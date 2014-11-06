@@ -10,4 +10,8 @@ public class Player {
         this.side = side;
         this.myTurn = myTurn;
     }
+    
+    public void setTurn(boolean myTurn) {
+        this.myTurn = myTurn;
+    }
 }

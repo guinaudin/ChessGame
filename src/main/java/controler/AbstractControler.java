@@ -17,4 +17,8 @@ public abstract class AbstractControler {
     public void startNewGame(Player whitePlayer, Player blackPlayer) {
         abstractModel.startNewGame(whitePlayer, blackPlayer);
     }
+    
+    public void makeTurn() {
+         abstractModel.makeTurn();
+    }
 }

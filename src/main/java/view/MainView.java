@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -262,6 +261,14 @@ public class MainView extends JFrame implements Observer, ActionListener {
     
     private void selectOrMovePiece(int posX, int posY) {
         System.out.println("Position ("+posX+","+posY);
+        
+        //Si la couleur de la piece correspond à 
+        if(!(controler.selectBoardPiece(posX, posY) == 0)) {   
+            this.selectBoardDie(posX, posY);
+        }
+        else if(selectedBoardDie != null) {
+            this.moveBoardDie(selectedBoardDie, posX, posY, selectedPosX, selectedPosY);
+        }
     }
     
     @Override

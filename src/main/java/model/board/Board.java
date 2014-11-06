@@ -16,7 +16,7 @@ public class Board {
         this.initializeDefaultBoard();
     }
     
-    public void initializeDefaultBoard() {
+    private void initializeDefaultBoard() {
         this.board = new Piece[8][8];
         
         for(int i = 0; i < 8; i++) {
