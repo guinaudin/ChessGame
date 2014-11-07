@@ -160,11 +160,11 @@ public class MainView extends JFrame implements Observer, ActionListener {
         chessBoardPanel.add(new JLabel(""));
                         
         //creation des JButtons installer sur le panel en les rendant evenementiel
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                switch(j) {
+        for(int j = 0; j < 8; j++) {
+            for(int i = 0; i < 8; i++) {
+                switch(i) {
                     case 0:
-                        chessBoardPanel.add(new JLabel("" + (i + 1),
+                        chessBoardPanel.add(new JLabel("" + (j + 1),
                                 SwingConstants.CENTER));
                     default:
                         jButtonChessBoard[i][j] = new JButton("");
@@ -177,7 +177,7 @@ public class MainView extends JFrame implements Observer, ActionListener {
                         
                         chessBoardPanel.add(jButtonChessBoard[i][j]);
                         
-                        if(j == 7)
+                        if(i == 7)
                             chessBoardPanel.add(new JLabel(""));
                 }
             }
@@ -300,20 +300,49 @@ public class MainView extends JFrame implements Observer, ActionListener {
         System.out.println("Piece selected");
         
         selectedPiece = controler.selectBoardPiece(pos);
+        
+        //test piece
+        if(selectedPiece instanceof Rook)
+            System.out.println("Piece : Rook");
+        else if(selectedPiece instanceof King)
+            System.out.println("Piece : King");
+        else if(selectedPiece instanceof Queen)
+            System.out.println("Piece : Queen");
+        else if(selectedPiece instanceof Bishop)
+            System.out.println("Piece : Bishop");
+        else if(selectedPiece instanceof Knight)
+            System.out.println("Piece : Knight");
+        else if(selectedPiece instanceof Pawn)
+            System.out.println("Piece : Pawn");
+                
         selectedPieceMoveList = controler.getSelectedPieceMoveList(selectedPiece);
         
         this.highlightBoard(selectedPieceMoveList);
     }
     
     private void highlightBoard(MoveList selectedPieceMoveList) {
+        this.cleanBoardSelection();
+        
         for(int i = 0; i < selectedPieceMoveList.size(); i++) {
             jButtonChessBoard[selectedPieceMoveList.getMove(i).getDestinationPosition().getX()][selectedPieceMoveList.getMove(i).getDestinationPosition().getY()].setBackground(Color.DARK_GRAY);
+        }
+    }
+    
+    private void cleanBoardSelection() {
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if((i+j)%2 == 1)
+                    jButtonChessBoard[i][j].setBackground(Color.LIGHT_GRAY);
+                else
+                    jButtonChessBoard[i][j].setBackground(Color.WHITE);
+            }
         }
     }
     
     @Override
     public void updatePieceBoard(Board board) {
         Piece[][] chessBoard = board.getBoard();
+        
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 try {

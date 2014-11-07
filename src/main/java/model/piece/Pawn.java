@@ -5,7 +5,8 @@ import model.Position;
 import model.board.Board;
 
 public class Pawn extends Piece {
-    public Pawn(Side side) {
+    public Pawn(Position position, Side side) {
+        this.position = position;
         this.side = side;
         this.cost = 1;
     }

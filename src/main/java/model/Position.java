@@ -9,6 +9,7 @@ public final class Position implements Comparable<Position> {
     }
 
     public Position(final Position position, final int deltaX, final int deltaY) {
+        //System.out.println("destX : " + position.posX + "destY : " + position.posY);
         this(position.posX + deltaX, position.posY + deltaY);
     }
 

@@ -2,7 +2,7 @@ package model.board;
 
 public class LineTypes {
     public enum Line { 
-        ONE(7), TWO(6), THREE(5), FOUR(4), FIVE(3), SIX(2), SEVEN(1), EIGHT(0);
+        ONE(0), TWO(1), THREE(2), FOUR(3), FIVE(4), SIX(5), SEVEN(6), EIGHT(7);
 
         private int line;
 

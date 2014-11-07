@@ -9,7 +9,8 @@ public class Knight extends Piece {
     static final int NEAR = 1;
     static final int FAR = 2;
     
-    public Knight(Side side) {
+    public Knight(Position position, Side side) {
+        this.position = position;
         this.side = side;
         this.cost = 3;
     }

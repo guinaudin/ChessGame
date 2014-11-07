@@ -6,7 +6,8 @@ import model.Position;
 import model.board.Board;
 
 public class Bishop extends Piece {
-    public Bishop(Side side) {
+    public Bishop(Position position, Side side) {
+        this.position = position;
         this.side = side;
         this.cost = 3;
     }

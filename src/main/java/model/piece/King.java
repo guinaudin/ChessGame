@@ -5,7 +5,8 @@ import model.Position;
 import model.board.Board;
 
 public class King extends Piece {
-    public King(Side side) {
+    public King(Position position, Side side) {
+        this.position = position;
         this.side = side;
     }
     

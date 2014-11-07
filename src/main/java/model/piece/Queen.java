@@ -6,7 +6,8 @@ import model.Position;
 import model.board.Board;
 
 public class Queen extends Piece {
-    public Queen(Side side) {
+    public Queen(Position position, Side side) {
+        this.position = position;
         this.side = side;
         this.cost = 9;
     }
