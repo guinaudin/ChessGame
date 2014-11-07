@@ -27,6 +27,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import model.MoveList;
 import model.Position;
 import model.board.Board;
 import model.piece.Bishop;
@@ -58,11 +59,14 @@ public class MainView extends JFrame implements Observer, ActionListener {
     private Player whitePlayer;
     private Player blackPlayer;
     private Piece selectedPiece;
-    private Position selectedPos;
+    private MoveList selectedPieceMoveList;
     
     public MainView(AbstractControler controler) {
         super("Chess Game");
         this.controler = controler;
+        
+        selectedPieceMoveList = null;
+        selectedPiece = null;
         
         this.buildFrame();
         this.buildMenuBar();
@@ -169,7 +173,7 @@ public class MainView extends JFrame implements Observer, ActionListener {
                         jButtonChessBoard[i][j].setOpaque(true);
                         jButtonChessBoard[i][j].setBorderPainted(false);
                         if((i+j)%2 == 1)
-                            jButtonChessBoard[i][j].setBackground(Color.gray);
+                            jButtonChessBoard[i][j].setBackground(Color.LIGHT_GRAY);
                         
                         chessBoardPanel.add(jButtonChessBoard[i][j]);
                         
@@ -260,33 +264,51 @@ public class MainView extends JFrame implements Observer, ActionListener {
             for(int i = 0; i < 8; i++) {
                 for(int j = 0; j < 8; j++) {
                     if(e.getActionCommand().equals("button" + i + j)) {
-                        this.selectOrMovePiece(j, i);
+                        this.selectOrMovePiece(new Position(i, j));
                     }
                 }
             }
         }
     }
     
-    private void selectOrMovePiece(int posX, int posY) {
-        System.out.println("Position ("+posX+","+posY+")");
+    private void selectOrMovePiece(Position pos) {
+        System.out.println("Position ("+pos.getX()+","+pos.getY()+")");
         
-        //Si la couleur de la piece correspond à 
-        if(whitePlayer.getTurn()) {
-            if(controler.selectBoardPiece(posX, posY) != null) {
-                System.out.println("color : " + controler.selectBoardPiece(posX, posY).getSide());
-                if(whitePlayer.getSide() == controler.selectBoardPiece(posX, posY).getSide()) {
-                    System.out.println("hello");
-                    this.selectBoardPiece(posX, posY);
+        if(selectedPiece != null) {
+            if(selectedPiece.getPosition() == pos) {
+                selectedPieceMoveList = null;
+                selectedPiece = null;
+            }
+        }
+        if(controler.selectBoardPiece(pos) != null) {
+            if(whitePlayer.getTurn()) {
+                System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
+                if(whitePlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
+                    this.selectBoardPiece(pos);
+                }
+            }
+            else {
+                System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
+                if(blackPlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
+                    this.selectBoardPiece(pos);
                 }
             }
         }
     }
     
-    private void selectBoardPiece(int posX, int posY) {
+    private void selectBoardPiece(Position pos) {
         System.out.println("Piece selected");
         
-        selectedPiece = controler.selectBoardPiece(posX, posY);
-        selectedPos = new Position(posX, posY);
+        selectedPiece = controler.selectBoardPiece(pos);
+        selectedPieceMoveList = controler.getSelectedPieceMoveList(selectedPiece);
+        
+        this.highlightBoard(selectedPieceMoveList);
+    }
+    
+    private void highlightBoard(MoveList selectedPieceMoveList) {
+        for(int i = 0; i < selectedPieceMoveList.size(); i++) {
+            jButtonChessBoard[selectedPieceMoveList.getMove(i).getDestinationPosition().getX()][selectedPieceMoveList.getMove(i).getDestinationPosition().getY()].setBackground(Color.DARK_GRAY);
+        }
     }
     
     @Override
@@ -295,6 +317,10 @@ public class MainView extends JFrame implements Observer, ActionListener {
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 try {
+                    if((i+j)%2 == 1)
+                        jButtonChessBoard[i][j].setBackground(Color.LIGHT_GRAY);
+                    else
+                        jButtonChessBoard[i][j].setBackground(Color.white);
                     if(chessBoard[i][j] != null)
                         jButtonChessBoard[i][j].setIcon(new ImageIcon(this.getPieceImage(chessBoard[i][j])));
                 } catch (IOException ex) {

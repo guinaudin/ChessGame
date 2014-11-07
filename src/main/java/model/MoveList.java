@@ -37,6 +37,10 @@ public class MoveList implements Iterable<Move> {
     public final int size() {
         return moveArray.size();
     }
+    
+    public Move getMove(int i) {
+        return moveArray.get(i);
+    }
 
     @Override
     public final Iterator<Move> iterator() {

@@ -16,7 +16,9 @@ public abstract class AbstractModel implements Observable {
     
     public abstract void makeTurn();
     
-    public abstract Piece selectBoardPiece(int posX, int posY);
+    public abstract Piece selectBoardPiece(Position pos);
+    
+    public abstract MoveList getSelectedPieceMoveList(Piece selectedPiece);
     
     @Override
     public void addObserver(Observer obs) {

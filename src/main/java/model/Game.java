@@ -69,26 +69,16 @@ public class Game extends AbstractModel {
     }
     
     @Override
-    public Piece selectBoardPiece(int posX, int posY) {
-        Position pos = new Position(posX, posY);
-        if(board.getPiece(pos) instanceof Pawn)
-            return new Pawn(board.getPiece(pos).getSide());
-        else if(board.getPiece(pos) instanceof Rook)
-            return new Rook(board.getPiece(pos).getSide());
-        else if(board.getPiece(pos) instanceof Knight)
-            return new Knight(board.getPiece(pos).getSide());
-        else if(board.getPiece(pos) instanceof Bishop)
-            return new Bishop(board.getPiece(pos).getSide());
-        else if(board.getPiece(pos) instanceof Queen)
-            return new Queen(board.getPiece(pos).getSide());
-        else if(board.getPiece(pos) instanceof King)
-            return new King(board.getPiece(pos).getSide());
+    public Piece selectBoardPiece(Position pos) {
+        if(board.getPiece(pos) instanceof Pawn || board.getPiece(pos) instanceof Rook || board.getPiece(pos) instanceof Knight ||
+                board.getPiece(pos) instanceof Bishop || board.getPiece(pos) instanceof Queen || board.getPiece(pos) instanceof King)
+            return board.getPiece(pos);
         else
             return null;
-        
-        /*if(board.getPiece(new Position(posX, posY)) != null)
-            return board.getPiece(new Position(posX, posY));
-        else 
-            return null;*/
+    }
+    
+    @Override
+    public MoveList getSelectedPieceMoveList(Piece selectedPiece) {
+        return selectedPiece.getMoveList(board);
     }
 }

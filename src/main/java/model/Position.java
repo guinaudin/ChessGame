@@ -13,7 +13,7 @@ public final class Position implements Comparable<Position> {
     }
 
     public int getX() {
-        return posY;
+        return posX;
     }
 
     public int getY() {
