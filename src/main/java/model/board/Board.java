@@ -34,14 +34,14 @@ public class Board {
         board[ColumnTypes.Column.C.getInt()][LineTypes.Line.FIVE.getInt()] = new Knight(new Position(ColumnTypes.Column.C.getInt(), LineTypes.Line.FIVE.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.H.getInt()][LineTypes.Line.EIGHT.getInt()] = new Rook(new Position(ColumnTypes.Column.H.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
         
-        board[ColumnTypes.Column.A.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.A.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
+        /*board[ColumnTypes.Column.A.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.A.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.B.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.B.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.C.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.C.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.D.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.D.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.E.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.E.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.F.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.F.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.G.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.G.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
-        board[ColumnTypes.Column.H.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.H.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);
+        board[ColumnTypes.Column.H.getInt()][LineTypes.Line.SEVEN.getInt()] = new Pawn(new Position(ColumnTypes.Column.H.getInt(), LineTypes.Line.SEVEN.getInt()), Piece.Side.WHITE);*/
         
         board[ColumnTypes.Column.A.getInt()][LineTypes.Line.ONE.getInt()] = new Rook(new Position(ColumnTypes.Column.A.getInt(), LineTypes.Line.ONE.getInt()), Piece.Side.BLACK);
         board[ColumnTypes.Column.B.getInt()][LineTypes.Line.ONE.getInt()] = new Knight(new Position(ColumnTypes.Column.B.getInt(), LineTypes.Line.ONE.getInt()), Piece.Side.BLACK);
@@ -107,7 +107,7 @@ public class Board {
     }
     
     public boolean inRange(Position position) {
-        return (position.getX() > 0) && (position.getY() > 0) &&
+        return (position.getX() >= 0) && (position.getY() >= 0) &&
                (position.getX() < 8) && (position.getY() < 8);
     }
     

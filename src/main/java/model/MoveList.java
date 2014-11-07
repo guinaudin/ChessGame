@@ -22,7 +22,6 @@ public class MoveList implements Iterable<Move> {
    
     public void AddAllowedMove(Move move) {
         Piece piece = board.getPiece(move.getOriginPosition());
-        System.out.println("test " + move.getOriginPosition().getX() +" : " + piece.getSide());
         
         if(board.isFree(move.getDestinationPosition(), piece.getSide())) {
            if(!this.causesCheck(move)) {
