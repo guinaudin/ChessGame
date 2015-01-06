@@ -14,6 +14,7 @@ public class Rook extends Piece {
     
     @Override
     public MoveList getMoveList(Board board) {
+        Boolean captured = false;
         MoveList moveList = new MoveList(board);
         
         Position positionOrigin = this.getPosition();
@@ -21,35 +22,62 @@ public class Rook extends Piece {
         int y = positionOrigin.getY();
         
         Position tempPosition = new Position(x-1, y);
-        while(board.isFree(tempPosition, side)) {
+        while(board.isFree(tempPosition, side) && captured == false) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
+            
+            if(board.getPiece(tempPosition) != null) {
+                if(board.getPiece(tempPosition).getSide() != side) {
+                    captured = true;
+                }
+            }
             
             x--;
             tempPosition = new Position(x, positionOrigin.getY());
         }
         
+        captured = false;
         x = positionOrigin.getX() + 1;
         tempPosition = new Position(x, positionOrigin.getY());
-        while(board.isFree(tempPosition, side)) {
+        while(board.isFree(tempPosition, side) && captured == false) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
+            
+            if(board.getPiece(tempPosition) != null) {
+                if(board.getPiece(tempPosition).getSide() != side) {
+                    captured = true;
+                }
+            }
             
             x++;
             tempPosition = new Position(x, positionOrigin.getY());
         }
         
+        captured = false;
         y = positionOrigin.getY() - 1;
         tempPosition = new Position(positionOrigin.getX(), y);
-        while(board.isFree(tempPosition, side)) {
+        while(board.isFree(tempPosition, side) && captured == false) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
+            
+            if(board.getPiece(tempPosition) != null) {
+                if(board.getPiece(tempPosition).getSide() != side) {
+                    captured = true;
+                }
+            }
             
             y--;
             tempPosition = new Position(positionOrigin.getX(), y);
         }
         
+        captured = false;
         y = positionOrigin.getY() + 1;
         tempPosition = new Position(positionOrigin.getX(), y);
-        while(board.isFree(tempPosition, side)) {
+        while(board.isFree(tempPosition, side) && captured == false) {
             moveList.AddAllowedMove(new Move(positionOrigin, tempPosition));
+            
+            if(board.getPiece(tempPosition) != null) {
+                if(board.getPiece(tempPosition).getSide() != side) {
+                    captured = true;
+                }
+            }
             
             y++;
             tempPosition = new Position(positionOrigin.getX(), y);

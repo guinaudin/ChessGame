@@ -60,6 +60,7 @@ public class MainView extends JFrame implements Observer, ActionListener {
     private Player blackPlayer;
     private Piece selectedPiece;
     private MoveList selectedPieceMoveList;
+    private Boolean pieceDeselected;
     
     public MainView(AbstractControler controler) {
         super("Chess Game");
@@ -67,6 +68,7 @@ public class MainView extends JFrame implements Observer, ActionListener {
         
         selectedPieceMoveList = null;
         selectedPiece = null;
+        pieceDeselected = false;
         
         this.buildFrame();
         this.buildMenuBar();
@@ -274,27 +276,37 @@ public class MainView extends JFrame implements Observer, ActionListener {
     private void selectOrMovePiece(Position pos) {
         System.out.println("Position ("+pos.getX()+","+pos.getY()+")");
         
-        if(selectedPiece != null) {
-            if(selectedPiece.getPosition() == pos) {
-                selectedPieceMoveList = null;
-                selectedPiece = null;
-            }
-        }
+        //If you want to deselect a piece
         if(controler.selectBoardPiece(pos) != null) {
-            if(whitePlayer.getTurn()) {
-                System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
-                if(whitePlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
-                    this.selectBoardPiece(pos);
+            if(selectedPiece != null) {
+                if(selectedPiece.getPosition().equals(pos)) {
+                    selectedPieceMoveList = null;
+                    selectedPiece = null;
+                    pieceDeselected = true;
+                    this.cleanBoardSelection();
                 }
             }
-            else {
-                System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
-                if(blackPlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
-                    this.selectBoardPiece(pos);
+        
+            if(pieceDeselected == false) {
+                if(whitePlayer.getTurn()) {
+                    System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
+                    if(whitePlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
+                        this.selectBoardPiece(pos);
+                    }
+                }
+                else {
+                    System.out.println("color : " + controler.selectBoardPiece(pos).getSide());
+                    if(blackPlayer.getSide() == controler.selectBoardPiece(pos).getSide()) {
+                        this.selectBoardPiece(pos);
+                    }
                 }
             }
         }
+        //make the move
+        //TO DO
+        pieceDeselected = false;
     }
+    
     
     private void selectBoardPiece(Position pos) {
         System.out.println("Piece selected");
