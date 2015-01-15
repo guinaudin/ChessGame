@@ -2,7 +2,7 @@
 *.class
 
 #Remove pom.properties
-*/target/maven-archiver/pom.properties
+*/maven-archiver/pom.properties
 
 #Remove SNAPSHOT.jar
-*/target/ChessGame-1.0-SNAPSHOT.jar
+*/ChessGame-1.0-SNAPSHOT.jar
