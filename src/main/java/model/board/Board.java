@@ -28,8 +28,8 @@ public class Board {
         board[ColumnTypes.Column.A.getInt()][LineTypes.Line.EIGHT.getInt()] = new Rook(new Position(ColumnTypes.Column.A.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.B.getInt()][LineTypes.Line.EIGHT.getInt()] = new Knight(new Position(ColumnTypes.Column.B.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.C.getInt()][LineTypes.Line.EIGHT.getInt()] = new Bishop(new Position(ColumnTypes.Column.C.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
-        board[ColumnTypes.Column.D.getInt()][LineTypes.Line.EIGHT.getInt()] = new Queen(new Position(ColumnTypes.Column.D.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
-        board[ColumnTypes.Column.E.getInt()][LineTypes.Line.EIGHT.getInt()] = new King(new Position(ColumnTypes.Column.E.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
+        board[ColumnTypes.Column.D.getInt()][LineTypes.Line.FIVE.getInt()] = new Queen(new Position(ColumnTypes.Column.D.getInt(), LineTypes.Line.FIVE.getInt()), Piece.Side.WHITE);
+        board[ColumnTypes.Column.E.getInt()][LineTypes.Line.THREE.getInt()] = new King(new Position(ColumnTypes.Column.E.getInt(), LineTypes.Line.THREE.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.F.getInt()][LineTypes.Line.EIGHT.getInt()] = new Bishop(new Position(ColumnTypes.Column.F.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.C.getInt()][LineTypes.Line.FIVE.getInt()] = new Knight(new Position(ColumnTypes.Column.C.getInt(), LineTypes.Line.FIVE.getInt()), Piece.Side.WHITE);
         board[ColumnTypes.Column.H.getInt()][LineTypes.Line.EIGHT.getInt()] = new Rook(new Position(ColumnTypes.Column.H.getInt(), LineTypes.Line.EIGHT.getInt()), Piece.Side.WHITE);
