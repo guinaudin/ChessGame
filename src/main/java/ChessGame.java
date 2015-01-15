@@ -12,7 +12,6 @@ public class ChessGame {
             @Override
             public void run() {   
                 //Instanciation de notre modèle
-                //Modification Arnaud Test
                 AbstractModel abstractModel = new Game();
                 //Création du contrôleur
                 AbstractControler controler = new BoardControler(abstractModel);
