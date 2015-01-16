@@ -24,10 +24,10 @@ public class MoveList implements Iterable<Move> {
         Piece piece = board.getPiece(move.getOriginPosition());
         
         if(board.isFree(move.getDestinationPosition(), piece.getSide())) {
-           if(!this.causesCheck(move)) {
+            if(!this.causesCheck(move)) {
                moveArray.add(move);
                System.out.println("added");
-           }
+            }
         }
     }
     
